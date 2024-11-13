@@ -1,0 +1,58 @@
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+
+# Ignore temporary and build files
+build/
+*.ipa
+*.app
+*.dSYM
+*.xcworkspace
+*.xcodeproj/project.xcworkspace/
+*.xcuserdata/
+DerivedData/
+.idea/
+*.xcuserstate
+
+# Ignore Xcode temporary and log files
+*.log
+*.swp
+*.lock
+*.xcscmblueprint
+
+# Ignore environment-specific configuration files
+xcdebugger/
+*.xcconfig
+
+# Ignore Carthage generated libraries
+Carthage/Build/
+
+# Ignore CocoaPods dependencies
+Pods/
+Podfile.lock
+
+# Ignore Swift Package Manager files
+/.build
+/Package.resolved
+
+# Ignore caches from simulators and connected devices
+Library/Developer/Xcode/DerivedData/
+Library/Developer/CoreSimulator/Devices/
+
+# Ignore secret files and API keys (e.g., for API config files)
+Secrets.plist
+Configurations/*.xcconfig
+
+# Ignore Fastlane files (optional, if you use Fastlane)
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Ignore test artifacts and temporary test files
+test_output/
+*.junit
+
+# Ignore playground-specific files
+*.playground/**/timeline.xctimeline
+*.playground/**/playground.xcworkspace
