@@ -6,17 +6,11 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NewsTableViewCell: UITableViewCell {
-    // MARK: - Variables
-    
     
     // MARK: - LyfeCycle
-    
-    // MARK: - UI Setup
-    
-    // MARK: - Selectors
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "NewsViewCell")
         self.selectionStyle = .none
@@ -28,22 +22,14 @@ class NewsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
+    // MARK: - UI Setup
     private func setupView() {
         contentView.addSubview(infoStackView)
         infoStackView.addArrangedSubview(authorLabel)
         infoStackView.addArrangedSubview(titleLabel)
         infoStackView.addArrangedSubview(descriptionLabel)
+        infoStackView.addArrangedSubview(newsImage)
+        infoStackView.addArrangedSubview(dateLabel)
     }
     
     private func setupConstraints() {
@@ -52,6 +38,8 @@ class NewsTableViewCell: UITableViewCell {
             infoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             infoStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             infoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
+            
+            newsImage.heightAnchor.constraint(equalToConstant: 200),
         ])
     }
     
@@ -82,6 +70,14 @@ class NewsTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 10, weight: .light)
+        label.textColor = .label
+        return label
+    }()
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -100,14 +96,18 @@ class NewsTableViewCell: UITableViewCell {
         label.textColor = .label
         label.numberOfLines = 20
         label.font = .systemFont(ofSize: 16, weight: .light)
-
-        
         return label
     }()
     
+    
+    // MARK: - Selectors
     public func updateNewsCell(_ news: NewsListModel.FetchNews.ViewModel.DisplayedArticle) {
         authorLabel.text = news.author
         titleLabel.text = news.title
         descriptionLabel.text = news.description
+        dateLabel.text = news.publishedAt
+        
+        let url = URL(string: news.imageUrl)
+        newsImage.kf.setImage(with: url)
     }
 }

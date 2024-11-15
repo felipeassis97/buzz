@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CAF1421684326192F42ACE56 /* Pods_Buzz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7570C94ECBB7B5DEB8B8AD0 /* Pods_Buzz.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		93C706B99B738CC72AEEF122 /* Pods-Buzz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzz.release.xcconfig"; path = "Target Support Files/Pods-Buzz/Pods-Buzz.release.xcconfig"; sourceTree = "<group>"; };
 		9E240A222CE5599F008142F1 /* Buzz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buzz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7570C94ECBB7B5DEB8B8AD0 /* Pods_Buzz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F89A12B23608E842CAB46FF2 /* Pods-Buzz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzz.debug.xcconfig"; path = "Target Support Files/Pods-Buzz/Pods-Buzz.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,17 +43,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAF1421684326192F42ACE56 /* Pods_Buzz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DB77B0FA42AC8C6B9B90DAE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F89A12B23608E842CAB46FF2 /* Pods-Buzz.debug.xcconfig */,
+				93C706B99B738CC72AEEF122 /* Pods-Buzz.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9E240A192CE5599F008142F1 = {
 			isa = PBXGroup;
 			children = (
 				9E240A242CE5599F008142F1 /* Buzz */,
 				9E240A232CE5599F008142F1 /* Products */,
+				2DB77B0FA42AC8C6B9B90DAE /* Pods */,
+				AFE938A88C4A746EB7AF3CDA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +77,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AFE938A88C4A746EB7AF3CDA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7570C94ECBB7B5DEB8B8AD0 /* Pods_Buzz.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -65,9 +92,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E240A352CE5599F008142F1 /* Build configuration list for PBXNativeTarget "Buzz" */;
 			buildPhases = (
+				BB15F1F6601C3135BDA27D09 /* [CP] Check Pods Manifest.lock */,
 				9E240A1E2CE5599F008142F1 /* Sources */,
 				9E240A1F2CE5599F008142F1 /* Frameworks */,
 				9E240A202CE5599F008142F1 /* Resources */,
+				1C3017632DB64DE80DBE140A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -77,8 +106,6 @@
 				9E240A242CE5599F008142F1 /* Buzz */,
 			);
 			name = Buzz;
-			packageProductDependencies = (
-			);
 			productName = Buzz;
 			productReference = 9E240A222CE5599F008142F1 /* Buzz.app */;
 			productType = "com.apple.product-type.application";
@@ -127,6 +154,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C3017632DB64DE80DBE140A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Buzz/Pods-Buzz-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Buzz/Pods-Buzz-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Buzz/Pods-Buzz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB15F1F6601C3135BDA27D09 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Buzz-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9E240A1E2CE5599F008142F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -140,12 +209,14 @@
 /* Begin XCBuildConfiguration section */
 		9E240A362CE5599F008142F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F89A12B23608E842CAB46FF2 /* Pods-Buzz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FUQ4LQKC8Z;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Buzz/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Buzz;
@@ -153,6 +224,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -172,12 +244,14 @@
 		};
 		9E240A372CE5599F008142F1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93C706B99B738CC72AEEF122 /* Pods-Buzz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FUQ4LQKC8Z;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Buzz/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Buzz;
@@ -185,6 +259,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -204,6 +279,7 @@
 		};
 		9E240A382CE5599F008142F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F89A12B23608E842CAB46FF2 /* Pods-Buzz.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -254,7 +330,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -267,6 +343,7 @@
 		};
 		9E240A392CE5599F008142F1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93C706B99B738CC72AEEF122 /* Pods-Buzz.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -311,7 +388,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -331,7 +408,7 @@
 				9E240A392CE5599F008142F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		9E240A352CE5599F008142F1 /* Build configuration list for PBXNativeTarget "Buzz" */ = {
 			isa = XCConfigurationList;
@@ -340,7 +417,7 @@
 				9E240A372CE5599F008142F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
