@@ -9,7 +9,7 @@ import Foundation
 
 enum NewsApi {
     static let baseURL = "https://my-json-server.typicode.com/alura-cursos/news-api"
-    static let articles = "articles"
+    static let articles = "/articles"
 }
 
 class NewsAPIWorker {
