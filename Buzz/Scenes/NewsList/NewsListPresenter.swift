@@ -26,14 +26,12 @@ class NewsListPresenter: NewsListPresentationLogic {
         }
         
         let viewModel = NewsListModel.FetchNews.ViewModel(displayedArticles: displayedArticles)
-        
         viewController?.displayFetchedNews(viewModel: viewModel)
     }
     
     func presentError(error: any Error) {
         print(error.localizedDescription)
         viewController?.displayError(error: error.localizedDescription)
-
     }
     
     private func formatDate(_ date: Date) -> String {

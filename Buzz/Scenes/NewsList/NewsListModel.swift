@@ -22,7 +22,6 @@ struct NewsListModel {
                 let publishedAt: String
                 let imageUrl: String
             }
-            
             let displayedArticles: [DisplayedArticle]
         }
     }

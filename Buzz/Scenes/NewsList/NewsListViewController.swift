@@ -17,36 +17,27 @@ class NewsListViewController: UIViewController {
     var interactor: NewsListBusineesLogic?
     var displayedArticles: [NewsListModel.FetchNews.ViewModel.DisplayedArticle] = []
     
+    // MARK: - LyfeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configure()
+        fetchNews()
+        setupView()
+        setupConstraints()
+    }
+    
     // MARK: - UI Components
     private lazy var newsListTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
-        
     }()
     
-    // MARK: - LyfeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setup()
-        fetchNews()
-        addSubViews()
-        setupConstraints()
-    }
-    
-    private func setup() {
-        let viewController = self
-        let interactor = NewsListInteractor()
-        let presenter = NewsListPresenter()
-        viewController.interactor = interactor
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-    }
-    
     // MARK: - UI Setup
-    private func addSubViews() {
+    private func setupView() {
         view.backgroundColor = .primaryAqua
         view.addSubview(newsListTableView)
     }
@@ -60,21 +51,31 @@ class NewsListViewController: UIViewController {
         ])
     }
     
+    // MARK: - Bindings
+    private func configure() {
+        let viewController = self
+        let interactor = NewsListInteractor()
+        let presenter = NewsListPresenter()
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+    }
+    
     private func fetchNews() {
         interactor?.loadNews(request: NewsListModel.FetchNews.Request())
     }
-    
-
 }
 
 extension NewsListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayedArticles.count
     }
-      
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = NewsTableViewCell()
-        cell.updateNewsCell(displayedArticles[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier, for: indexPath) as? NewsTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configure(displayedArticles[indexPath.row])
         return cell
     }
 }

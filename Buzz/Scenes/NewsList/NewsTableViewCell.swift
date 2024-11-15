@@ -9,10 +9,12 @@ import UIKit
 import Kingfisher
 
 class NewsTableViewCell: UITableViewCell {
+    // MARK: - Variables
+    static let identifier: String = "NewsTableViewCell"
     
     // MARK: - LyfeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: "NewsViewCell")
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         setupView()
         setupConstraints()
@@ -22,29 +24,8 @@ class NewsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - UI Setup
-    private func setupView() {
-        contentView.addSubview(infoStackView)
-        infoStackView.addArrangedSubview(authorLabel)
-        infoStackView.addArrangedSubview(titleLabel)
-        infoStackView.addArrangedSubview(descriptionLabel)
-        infoStackView.addArrangedSubview(newsImage)
-        infoStackView.addArrangedSubview(dateLabel)
-    }
-    
-    private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            infoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            infoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            infoStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            infoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
-            
-            newsImage.heightAnchor.constraint(equalToConstant: 200),
-        ])
-    }
-    
     // MARK: - UI Components
-    private let infoStackView: UIStackView = {
+    private let newsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -53,7 +34,7 @@ class NewsTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    private let newsImage: UIImageView = {
+    private let image: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
@@ -99,15 +80,35 @@ class NewsTableViewCell: UITableViewCell {
         return label
     }()
     
+    // MARK: - UI Setup
+    private func setupView() {
+        contentView.addSubview(newsStackView)
+        newsStackView.addArrangedSubview(authorLabel)
+        newsStackView.addArrangedSubview(titleLabel)
+        newsStackView.addArrangedSubview(descriptionLabel)
+        newsStackView.addArrangedSubview(image)
+        newsStackView.addArrangedSubview(dateLabel)
+    }
     
-    // MARK: - Selectors
-    public func updateNewsCell(_ news: NewsListModel.FetchNews.ViewModel.DisplayedArticle) {
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            newsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            newsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            newsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            newsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
+            
+            image.heightAnchor.constraint(equalToConstant: 200),
+        ])
+    }
+    
+    // MARK: - Bindings
+    public func configure(_ news: NewsListModel.FetchNews.ViewModel.DisplayedArticle) {
         authorLabel.text = news.author
         titleLabel.text = news.title
         descriptionLabel.text = news.description
         dateLabel.text = news.publishedAt
         
         let url = URL(string: news.imageUrl)
-        newsImage.kf.setImage(with: url)
+        image.kf.setImage(with: url)
     }
 }
