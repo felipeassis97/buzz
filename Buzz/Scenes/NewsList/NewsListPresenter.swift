@@ -18,6 +18,7 @@ class NewsListPresenter: NewsListPresentationLogic {
     func presentFetchNews(response: NewsListModel.FetchNews.Response) {
         let displayedArticles =  response.articles.map { article in
             return NewsListModel.FetchNews.ViewModel.DisplayedArticle(
+                id: article.id,
                 title: article.title,
                 description: article.description,
                 author: article.author,
@@ -37,7 +38,7 @@ class NewsListPresenter: NewsListPresentationLogic {
     private func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "pt_BR")
-        formatter.dateFormat = "d 'de' MM 'de' yyyy"
+        formatter.dateFormat = "d 'de' MMMM 'de' yyyy"
         return formatter.string(from: date)
     }
 }

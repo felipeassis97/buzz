@@ -15,7 +15,6 @@ class NewsTableViewCell: UITableViewCell {
     // MARK: - LyfeCycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.selectionStyle = .none
         setupView()
         setupConstraints()
     }
@@ -46,8 +45,7 @@ class NewsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 12, weight: .regular)
-        label.textColor = .label
-        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.textColor = .neutral
         return label
     }()
     
@@ -55,7 +53,7 @@ class NewsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 10, weight: .light)
-        label.textColor = .label
+        label.textColor = .neutral
         return label
     }()
     
@@ -74,7 +72,7 @@ class NewsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .headline)
-        label.textColor = .label
+        label.textColor = .neutral
         label.numberOfLines = 20
         label.font = .systemFont(ofSize: 16, weight: .light)
         return label

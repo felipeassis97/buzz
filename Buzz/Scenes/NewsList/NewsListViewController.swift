@@ -14,6 +14,7 @@ protocol NewsListDisplayLogic: AnyObject {
 
 class NewsListViewController: UIViewController {
     // MARK: - Variables
+    var router: NewsListRoutingLogic?
     var interactor: NewsListBusineesLogic?
     var displayedArticles: [NewsListModel.FetchNews.ViewModel.DisplayedArticle] = []
     
@@ -38,7 +39,7 @@ class NewsListViewController: UIViewController {
     
     // MARK: - UI Setup
     private func setupView() {
-        view.backgroundColor = .primaryAqua
+        view.backgroundColor = .onNeutral
         view.addSubview(newsListTableView)
     }
     
@@ -53,12 +54,15 @@ class NewsListViewController: UIViewController {
     
     // MARK: - Bindings
     private func configure() {
+        router = NewsListRouter()
         let viewController = self
         let interactor = NewsListInteractor()
         let presenter = NewsListPresenter()
+        
         viewController.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = viewController
+        router?.viewController = viewController
     }
     
     private func fetchNews() {
@@ -77,6 +81,12 @@ extension NewsListViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.configure(displayedArticles[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let article = displayedArticles[indexPath.row]
+        self.router?.routeToNewsDetails(articleId: article.id)
     }
 }
 
